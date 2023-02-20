@@ -1,0 +1,40 @@
+
+    <div>
+        <label>Title</label>
+        <input type="text" name="title" value="<%= book.title%>">
+    </div>
+    <div>
+        <label>Author</label>
+        <select name="author">
+        <% authors.map((author)=> { %>
+            <% if(author.id === book.author) { %>
+                <option selected label="<%= author.name %>" value="<%= author.id %>">
+                <% } else { %>
+                    <option label="<%= author.name %>" value="<%=  author.id%>">
+                    <% } %>
+            <% }) %>
+        </select>
+    </div>
+    <div>
+        <label>PublishDate</label>
+        <input type="date" value="<%= book.publishDate %>" name="publishdate">
+    </div>
+    <div>
+        <label>pageCount</label>
+        <input type="number" value="<%=book.pageCount %>" min="1" name="pagecount">
+    </div>
+    <div>
+        <label>cover</label>
+        <input type="file" value="<%= book.coverImageName%>" name="cover">
+    </div>
+    <div>
+        <label>descripition</label>
+        <textarea name="description"><%= book.description %></textarea>
+    </div>
+    
+
+
+<!-- <label>PublishDate</label>
+<input type="datetime" name="publishdate">
+<label>pageCount</label>
+<input type="number" name="pagecount"> -->

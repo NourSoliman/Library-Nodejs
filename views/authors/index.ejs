@@ -1,0 +1,13 @@
+<h3>Search</h3>
+<form action="/authors" method="get">
+    <label>
+        Name
+    </label>
+    <input type="text" name="name" value="<%= Search.name %>">
+    <button>Search</button>
+</form>
+<% authors.map((author)=> { %>
+    <div>
+        <%= author.name %>
+    </div>
+    <% }) %>
