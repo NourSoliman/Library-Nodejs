@@ -1,5 +1,5 @@
 const express = require(`express`)
-const Author = require("../models/Author")
+const Author = require("../models/author")
 const path = require(`path`)
 const Book = require("../models/books")
 const multer = require(`multer`)
