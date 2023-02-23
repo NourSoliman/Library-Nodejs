@@ -10,4 +10,21 @@
     <div>
         <%= author.name %>
     </div>
+    <a href="/authors/<%= author.id %>">View</a>
+    <a href="/authors/<%= author.id %>/edit">Edit</a>
+    <%-  include(`../partials/deleteForm` , {url : `/authors/${author.id}`})%>
     <% }) %>
+    
+    <!-- <a data-doc="" id="delete">Delete</a> -->
+    <!-- <script>
+        const trashcan = document.getElementById(`delete`)
+        trashcan.addEventListener(`click` , (e) => {
+            const endpoint = `/authors/${trashcan.dataset.doc}`;
+            fetch(endpoint , {
+                method: `DELETE`
+            })
+            .then((response)=> response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch(err => console.log(err));
+        })
+    </script> -->

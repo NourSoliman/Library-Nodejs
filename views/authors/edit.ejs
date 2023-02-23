@@ -1,0 +1,6 @@
+<h3>EDItAuthor</h3>
+<form action="/authors/<%= author.id %>?_method=PUT" method="post">
+    <%- include(`_form.ejs`) %>
+    <a href="/authors">Cancel</a>
+    <button type="submit">Submit</button>
+</form>
