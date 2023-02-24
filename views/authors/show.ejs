@@ -4,6 +4,8 @@
 <% if (booksByAuthor.length > 0 ) {%>
     <h2>Books by <%= author.name %></h2>
     <% booksByAuthor.map((book)=>{ %>
-        <img src="<%= book.coverImageName %>" height="100px" width="150px">
+        <a href="/books/<%= book.id %>">
+        <img src="<%= book.coverImagePath %>" height="100px" width="150px">
+    </a>
         <% }) %>
     <% } %>

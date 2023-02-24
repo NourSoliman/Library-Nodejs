@@ -25,9 +25,9 @@
     </div>
     <div>
         <% books.map((i) => { %>
-            <div>
+                <a href="/books/<%= i.id %>">
                 <img src="<%= i.coverImagePath %>" height="100px" width="150px">
-            </div>
+            </a>
             <% }) %>
     </div>
 </form>
