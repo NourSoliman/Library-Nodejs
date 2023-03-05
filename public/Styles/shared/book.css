@@ -1,0 +1,90 @@
+:root {
+    --black-color: black;
+    --white-color:white;
+    --hover-color: goldenrod;
+    --gold-color:gold;
+}
+.newBook {
+    color: var(--white-color);
+}   
+.search-book {
+    color: var(--white-color);
+}
+.search-button {
+    color: var(--black-color);
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 75px;
+}
+.filepond {
+    width: 200px;
+    height: 150px;
+    color: black !important;
+}
+.title {
+    color: var(--white-color);
+}
+
+/*newBooks-form*/
+.form-row {
+    display: flex;
+    margin-bottom: 15px;
+}
+.form-item {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: column;
+    margin-left: 2rem;
+    color: white;
+}
+.form-item:first-child {
+    margin-left: 0;
+}
+.form-item-no-grow {
+    flex-grow: 0;
+}
+.form-item input , .form-item select , .form-item textarea {
+    height: 30px;
+    font-size: 15px;
+    color: black!important;
+}
+.form-item textarea {
+    height: 100%;
+    resize: 0;
+}
+.books-controls {
+    gap: 20px;
+}
+.cancel-book {
+    text-decoration: none;
+    color: white;
+    border: 1px solid gray;
+    padding: 5px;
+    background-color: wheat;
+    color: black;
+}
+.submit-book {
+    padding: 5px;
+}
+/*Book*/
+.author-book , .publish-book , .page-book , .desc-book {
+    color: var(--white-color);
+}
+
+.book-controls {
+    display: flex;
+    gap: 5px;
+}
+.edit-book , .view-book {
+    text-decoration: none;
+    font-size: 25px;
+    color: var(--white-color);
+}
+.edit-book:hover , .view-book:hover {
+    color: var(--hover-color);
+}
+
+.publish {
+    color: var(--gold-color);
+}

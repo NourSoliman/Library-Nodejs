@@ -1,0 +1,74 @@
+:root {
+    --main-color : white;
+    --hover-color: goldenrod;
+}
+.author-label {
+    font-size: 15px;
+    color: white;
+}
+.Books-by {
+    color: var(--white-color);
+}
+/*Search*/
+.search {
+    font-size: 25px;
+    color: var(--main-color) !important;
+}
+.search-input {
+    padding: 5px;
+    width: 300px;
+}
+.search-button {
+    padding: 5px;
+    color: black;
+    width: 100px;
+}
+.view , .edit {
+text-decoration: none;
+font-size: 30px;
+color: var(--main-color);
+}
+.view:hover , .edit:hover {
+    color: goldenrod;
+}
+.author-name {
+    font-size: 20px;
+    color: gold;
+}
+.author-controls {
+    display: flex;
+    align-items: center;
+}
+.author-controls a {
+    padding: 10px;
+}
+.delete-button {
+    padding: 5px;
+    background-color: transparent;
+    color: var(--white-color);
+    border: none;
+    font-size: 25px;
+    width: 75px;
+    cursor: pointer;
+}
+.delete-button:hover {
+    color: var(--hover-color);
+}
+.author-container > label {
+    color: var(--main-color);
+}
+/*add author*/
+.add-author {
+    font-size: 30px;
+    color: var(--main-color);
+}
+.cancel-author {
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--main-color);
+}
+.submit-author {
+    color: black;
+    cursor: pointer;
+}

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&family=Roboto:wght@300;400;500;700;900&display=swap');
+@import 'shared/header.css';
+@import 'shared/author.css';
+@import 'shared/book.css';
+* {
+    box-sizing: border-box;
+
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background-color: #F4D03F;
+    background-image: url(../Images/3133075.jpg);
+    background-size: cover;
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+.recently {
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+.recently-container {
+    display: flex;
+    gap: 20px;
+}

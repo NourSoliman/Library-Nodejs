@@ -1,0 +1,10 @@
+<h2 class="newBook">
+    New book
+</h2>
+<form  action="/books" method="post" >
+<%-  include(`_form.ejs`)%>
+<div class="form-row books-controls">
+    <a href="/books" class="cancel-book"> Cancel</a>
+    <button type="submit" class="submit-book">Submit</button>
+</div>
+</form>

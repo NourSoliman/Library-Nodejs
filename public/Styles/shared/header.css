@@ -1,0 +1,33 @@
+:root {
+    --main-font : 'Poppins', sans-serif;
+}
+.header-links {
+    font-family: var(--main-font);
+}
+.main-header {
+    font-size: 50px;
+    text-decoration: none;
+    color: white !important;
+}
+.ul-links {
+    display: flex;
+}
+ul li {
+    list-style: none;
+
+}
+.header-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+}
+ul li  a {
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+
+}
+ul li  a:hover {
+    color: goldenrod;
+}

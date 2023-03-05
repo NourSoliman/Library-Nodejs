@@ -1,0 +1,24 @@
+<h1 class="search"><%= book.title %> Book</h1>
+<img width="150px" height ="300px" src="<%= book.coverImagePath %>" >
+<div class="author-book">
+    Author:  <span class="publish"><%= book.author.name %></span>
+</div>
+<div class="publish-book">
+    PublishDate : <span class="publish"><%= book.publishDate  %></span>
+</div>
+<div class="page-book">
+    PageCount :  <span class="publish"> <%= book.pageCount %></span>
+</div>
+<div class="desc-book">
+    descripition :  <span class="publish"> <%= book.description %> </span>
+</div>
+<div class="book-controls">
+    <div class="edit">
+
+        <a href="/books/<%= book.id %>/edit" class="edit-book">Edit</a>
+        <a href="/authors/<%= book.author.id %>" class="view-book">View Author</a>
+    </div>
+    <a>
+        <%- include(`../partials/deleteForm` , {url : `/books/${book.id}`}) %>
+    </a>
+</div>
