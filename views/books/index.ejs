@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h2 class="search-book">Search book</h2>
 <form action="/books" method="get">
     <div>
@@ -8,25 +9,49 @@
     </div>
     <div>
         <label class="title">
+=======
+<h2>Search book</h2>
+<form action="/books" method="get">
+    <div>
+        <label>
+            title
+        </label>
+        <input type="text" name="title" value="<%= Search.title %>">
+    </div>
+    <div>
+        <label>
+>>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
             publishDateBefore
         </label>
         <input type="date" name="publishdatebefore" value="<%= Search.publishDateBefore %>">
     </div>
     <div>
+<<<<<<< HEAD
         <label class="title">
+=======
+        <label>
+>>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
             publishDateAfter
         </label>
         <input type="date" name="publishdateafter" value="<%= Search.publishDateAfter %>">
     </div>
     <div>
+<<<<<<< HEAD
         <button type="submit" class="search-button">
+=======
+        <button type="submit">
+>>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
             search
         </button>
     </div>
     <div>
         <% books.map((i) => { %>
                 <a href="/books/<%= i.id %>">
+<<<<<<< HEAD
                 <img src="<%= i.coverImagePath %>" height="300px" width="150px">
+=======
+                <img src="<%= i.coverImagePath %>" height="100px" width="150px">
+>>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
             </a>
             <% }) %>
     </div>

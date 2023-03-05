@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 <h2 class="recently">Recently Added</h2>
 <div class="recently-container">
     <% books.map((i) => { %>
         <div >
             <a href="/books/<%= i.id %>"> 
             <img src="<%= i.coverImagePath %>" height="300px" width="150px">
+=======
+<h2>Recently Added</h2>
+<div>
+    <% books.map((i) => { %>
+        <div>
+            <a href="/books/<%= i.id %>"> 
+            <img src="<%= i.coverImagePath %>" height="100px" width="150px">
+>>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
         </a>
         </div>
         <% }) %>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h3 class="search">Search</h3>
 <form action="/authors" method="get" class="author-container">
     <label>
@@ -18,3 +19,35 @@
     </div>
     <% }) %>
     
+=======
+<h3>Search</h3>
+<form action="/authors" method="get">
+    <label>
+        Name
+    </label>
+    <input type="text" name="name" value="<%= Search.name %>">
+    <button>Search</button>
+</form>
+<% authors.map((author)=> { %>
+    <div>
+        <%= author.name %>
+    </div>
+    <a href="/authors/<%= author.id %>">View</a>
+    <a href="/authors/<%= author.id %>/edit">Edit</a>
+    <%-  include(`../partials/deleteForm` , {url : `/authors/${author.id}`})%>
+    <% }) %>
+    
+    <!-- <a data-doc="" id="delete">Delete</a> -->
+    <!-- <script>
+        const trashcan = document.getElementById(`delete`)
+        trashcan.addEventListener(`click` , (e) => {
+            const endpoint = `/authors/${trashcan.dataset.doc}`;
+            fetch(endpoint , {
+                method: `DELETE`
+            })
+            .then((response)=> response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch(err => console.log(err));
+        })
+    </script> -->
+>>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
