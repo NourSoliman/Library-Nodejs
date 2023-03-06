@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h1 class="search"><%= book.title %> Book</h1>
 <img width="150px" height ="300px" src="<%= book.coverImagePath %>" >
 <div class="author-book">
@@ -23,7 +23,7 @@
         <%- include(`../partials/deleteForm` , {url : `/books/${book.id}`}) %>
     </a>
 </div>
-=======
+
 <h1><%= book.title %> Book</h1>
 <img width="150px" height ="100px" src="<%= book.coverImagePath %>" >
 <div>
@@ -43,4 +43,4 @@
     <%- include(`../partials/deleteForm` , {url : `/books/${book.id}`}) %>
 </a>
 <a href="/authors/<%= book.author.id %>">View Author</a>
->>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
+

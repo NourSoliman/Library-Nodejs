@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h2 class="author-name"><%= author.name %> books</h2>
 <div class="author-controls">
     <a href="/authors/<%= author.id%>/edit" class="edit">Edit</a>
@@ -6,13 +6,13 @@
 </div>
 <% if (booksByAuthor.length > 0 ) {%>
     <h2 class="Books-by">Books by <%= author.name %></h2>
-=======
+<% } %>
 <h2><%= author.name %> books</h2>
 <a href="/authors/<%= author.id%>/edit">Edit</a>
 <%- include(`../partials/deleteForm`, {url:`/authors/${author.id}`}) %>
+
 <% if (booksByAuthor.length > 0 ) {%>
     <h2>Books by <%= author.name %></h2>
->>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
     <% booksByAuthor.map((book)=>{ %>
         <a href="/books/<%= book.id %>">
         <img src="<%= book.coverImagePath %>" height="100px" width="150px">

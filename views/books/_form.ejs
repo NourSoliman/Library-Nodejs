@@ -1,18 +1,10 @@
-<<<<<<< HEAD
+
     <div class="form-row">
         <div class="form-item">
             <label class="title">Title</label>
             <input type="text" name="title" value="<%= book.title%>">
         </div>
     <div class="form-item">
-=======
-
-    <div>
-        <label>Title</label>
-        <input type="text" name="title" value="<%= book.title%>">
-    </div>
-    <div>
->>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a
         <label>Author</label>
         <select name="author">
         <% authors.map((author)=> { %>
@@ -24,9 +16,7 @@
             <% }) %>
         </select>
     </div>
-<<<<<<< HEAD
     </div>
-
     <div class="form-row">
         <div class="form-item">
             <label>PublishDate</label>
@@ -37,46 +27,14 @@
             <input type="number" value="<%=book.pageCount %>" min="1" name="pagecount">
         </div>
     </div>
-
     <div class="form-row">
         <div class="form-item form-item-no-grow">
-
             <label>cover</label>
             <input type="file" class="filepond" name="cover" >
         </div>
         <div class="form-item">
-
             <label>descripition</label>
             <textarea name="description"><%= book.description %></textarea>
         </div>
     </div>
 
-    
-
-
-=======
-    <div>
-        <label>PublishDate</label>
-        <input type="date" value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split(`T`)[0]%>" name="publishdate">
-    </div>
-    <div>
-        <label>pageCount</label>
-        <input type="number" value="<%=book.pageCount %>" min="1" name="pagecount">
-    </div>
-    <div>
-        <label>cover</label>
-        <!-- <input type="file" name="cover" class="filepond"> -->
-        <input type="file" class="filepond" name="cover">
-    </div>
-    <div>
-        <label>descripition</label>
-        <textarea name="description"><%= book.description %></textarea>
-    </div>
-    
-
-
-<!-- <label>PublishDate</label>
-<input type="datetime" name="publishdate">
-<label>pageCount</label>
-<input type="number" name="pagecount"> -->
->>>>>>> 7e3dc9d6195031bf8dafd08965d927d5c448804a

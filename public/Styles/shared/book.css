@@ -37,7 +37,7 @@
     flex-direction: column;
     margin-left: 2rem;
     color: white;
-}
+} 
 .form-item:first-child {
     margin-left: 0;
 }
