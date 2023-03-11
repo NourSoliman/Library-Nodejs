@@ -7,15 +7,8 @@
 <% if (booksByAuthor.length > 0 ) {%>
     <h2 class="Books-by">Books by <%= author.name %></h2>
 <% } %>
-<h2><%= author.name %> books</h2>
-<a href="/authors/<%= author.id%>/edit">Edit</a>
-<%- include(`../partials/deleteForm`, {url:`/authors/${author.id}`}) %>
-
-<% if (booksByAuthor.length > 0 ) {%>
-    <h2>Books by <%= author.name %></h2>
     <% booksByAuthor.map((book)=>{ %>
         <a href="/books/<%= book.id %>">
-        <img src="<%= book.coverImagePath %>" height="100px" width="150px">
+        <img src="<%= book.coverImagePath %>" height="300px" width="150px">
     </a>
         <% }) %>
-    <% } %>

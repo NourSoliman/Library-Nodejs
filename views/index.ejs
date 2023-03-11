@@ -1,9 +1,8 @@
-
 <h2 class="recently">Recently Added</h2>
-<div >
-    <% books.map((i) => { %>
+<div>
+    <% books.map((i)=> { %>
         <div class="recently-container">
-            <a href="/books/<%= i.id %>"> 
-            <img src="<%= i.coverImagePath %>" height="300px" width="150px">
-            <% }) %>
-            </div>
+            <a href="/books/<%= i.id %>">
+                <img src="<%= i.coverImagePath %>" height="300px" width="150px">
+                <% }) %>
+        </div>

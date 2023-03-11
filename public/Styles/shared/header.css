@@ -28,6 +28,30 @@ ul li  a {
     color: white;
 
 }
+ul li p {
+    padding: 0px;
+    color: white;
+}
 ul li  a:hover {
     color: goldenrod;
 }
+
+/* Style for error message */
+.error {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for create account link */
+  .create-account {
+    margin-top: 20px;
+    text-align: center;
+
+  }
+  
+  .create-account a {
+    color: white;
+    text-decoration: none;
+  }

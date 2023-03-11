@@ -1,0 +1,20 @@
+<div class="login-form">
+  <h2>Login</h2>
+  <form action="/Sign/login" method="POST">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter your password">
+    </div>
+      <% if(typeof error !== `undefined`) { %>
+        <div class="error-message"> <%= error %></div>
+      <% } %>
+    <button type="submit">Login</button>
+  </form>
+  <div class="create-account">
+    <a href="/signup">Create Account</a>
+  </div>
+</div>

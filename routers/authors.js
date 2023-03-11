@@ -2,8 +2,14 @@ const express = require(`express`)
 const Author = require("../models/author")
 const router = express.Router()
 const Books = require(`../models/books`)
+const passport = require('passport');
+// const authMiddleware = require(`../middleware`)
+// router.use(authMiddleware);
+const { isAuth } = require("../Helpers/authentication")
+
 //index router
-router.get(`/` , async(req , res) => {
+router.get(`/`, isAuth ,  async(req , res) => {
+    
     let Search = {}
     if(req.query.name !=null && req.query.name !== ``) {
         Search.name = new RegExp(req.query.name , `i`)
@@ -16,10 +22,11 @@ router.get(`/` , async(req , res) => {
     }
 })
 //new author page
-router.get(`/new` , (req , res) => {
+router.get(`/new`  , isAuth ,   (req , res) => {
+    
     res.render(`authors/new` , {author : new Author()})
 })
-router.post(`/` , async (req , res) => {
+router.post(`/` ,  async(req , res) => {
     const author =  new Author({
         name:req.body.name
     })
@@ -34,7 +41,7 @@ router.post(`/` , async (req , res) => {
     }
 })
 //show authors page
-router.get(`/:id` , async (req , res) => {
+router.get(`/:id` , isAuth ,   async (req , res) => {
     try {
         const author = await Author.findById(req.params.id)
         const books = await Books.find({author : author.id}).limit(6).exec()
@@ -48,7 +55,7 @@ router.get(`/:id` , async (req , res) => {
     }
 })
 // edit authors 
-router.get(`/:id/edit` ,async (req , res) => {
+router.get(`/:id/edit`,  isAuth ,  async (req , res) => {
     try {
         const author = await Author.findById(req.params.id)
         res.render(`authors/edit` , {author : author})
@@ -58,7 +65,7 @@ router.get(`/:id/edit` ,async (req , res) => {
         res.redirect(`/authors`)
     }
 })
-router.put(`/:id` , async (req , res) => {
+router.put(`/:id` , isAuth ,  async (req , res) => {
     let author 
     try{
         author = await Author.findById(req.params.id)
@@ -77,7 +84,7 @@ router.put(`/:id` , async (req , res) => {
     }
 })
 //delete authors
-router.delete(`/:id`  , async (req , res) => {
+router.delete(`/:id` , isAuth ,  async (req , res) => {
     let author
     try {
         author = await Author.findById(req.params.id)
@@ -92,12 +99,6 @@ router.delete(`/:id`  , async (req , res) => {
         }
 
     }
-    // Author.findByIdAndDelete(req.params.id)
-    // .then(result => {
-    //     res.json({redirect:`/authors`}) 
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    // })
+
 })
 module.exports = router

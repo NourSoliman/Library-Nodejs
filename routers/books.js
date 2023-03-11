@@ -3,6 +3,8 @@ const Author = require("../models/author")
 const path = require(`path`)
 const Book = require("../models/books")
 // const multer = require(`multer`)
+const { isAuth } = require("../Helpers/authentication")
+
 const imagefiles = [`image/jpeg` , `image/png` , `image/gif`]
 // const upload = multer({
 //     dest: uploadPath, 
@@ -11,7 +13,7 @@ const imagefiles = [`image/jpeg` , `image/png` , `image/gif`]
 //     }
 // })
 const router = express.Router()
-router.get(`/` , async(req , res) => {
+router.get(`/` , isAuth , async(req , res) => {
     let query = Book.find({})
     if(req.query.title != null && req.query.title != ``) {
         query = query.regex(`title` , new RegExp(req.query.title , (`i`)))
@@ -33,11 +35,11 @@ router.get(`/` , async(req , res) => {
         res.redirect(`/`)
     }
 })
-router.get(`/new` , async(req , res) => {
+router.get(`/new` ,isAuth , async(req , res) => {
     renderAnotherPage(res , new Book())
 })
 //Creating a new Book
-router.post(`/` , async (req , res) => {
+router.post(`/` , isAuth , async (req , res) => {
     
         const book = new Book({
         title: req.body.title,
@@ -60,7 +62,7 @@ router.post(`/` , async (req , res) => {
         renderFormPage(res, book , `new` , hasError)
 }
 //Edit Book
-router.get(`/:id/edit` , async(req , res) => {
+router.get(`/:id/edit` , isAuth , async(req , res) => {
     try {
         const book = await Book.findById(req.params.id)
         renderFormPage(res , book , `edit`)
@@ -70,7 +72,7 @@ router.get(`/:id/edit` , async(req , res) => {
     }
 })
 //Update Book
-router.put(`/:id` , async(req , res) => {
+router.put(`/:id` , isAuth , async(req , res) => {
     let book
     try {
         book = await Book.findById(req.params.id)
@@ -117,7 +119,7 @@ router.put(`/:id` , async(req , res) => {
     }
 }
 //Show books page
-    router.get(`/:id` , async (req , res) => {
+    router.get(`/:id` , isAuth , async (req , res) => {
         try {
         const book = await Book.findById(req.params.id).populate(`author`).exec()
         res.render(`books/show` , {
@@ -137,7 +139,7 @@ router.put(`/:id` , async(req , res) => {
         }
     }
     //Delete Book page
-    router.delete(`/:id` , async(req , res) => {
+    router.delete(`/:id` , isAuth , async(req , res) => {
         let book 
         try {
             book = await Book.findById(req.params.id)
