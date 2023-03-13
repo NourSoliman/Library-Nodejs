@@ -2,7 +2,7 @@
 <h2 class="author-name"><%= author.name %> books</h2>
 <div class="author-controls">
     <a href="/authors/<%= author.id%>/edit" class="edit">Edit</a>
-    <%- include(`../partials/deleteForm`, {url:`/authors/${author.id}`}) %>
+    <%- include(`../partials/deleteForm`, {url:`/authors/${author.id}`, author:author, req:req }) %>
 </div>
 <% if (booksByAuthor.length > 0 ) {%>
     <h2 class="Books-by">Books by <%= author.name %></h2>

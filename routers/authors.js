@@ -16,7 +16,7 @@ router.get(`/`, isAuth ,  async(req , res) => {
     }
     try {
         const authors = await Author.find(Search)
-        res.render(`authors/index` , {authors : authors , Search:req.query})
+        res.render(`authors/index` , {authors : authors , Search:req.query , req:req})
     } catch {
         res.redirect(`/`);
     }
@@ -28,7 +28,8 @@ router.get(`/new`  , isAuth ,   (req , res) => {
 })
 router.post(`/` ,  async(req , res) => {
     const author =  new Author({
-        name:req.body.name
+        name:req.body.name,
+        user:req.user.id
     })
     try{
         const newAuthor = await author.save()
@@ -45,9 +46,12 @@ router.get(`/:id` , isAuth ,   async (req , res) => {
     try {
         const author = await Author.findById(req.params.id)
         const books = await Books.find({author : author.id}).limit(6).exec()
+
         res.render(`authors/show` ,{
             author : author,
-            booksByAuthor : books
+            booksByAuthor : books,
+            currentUser:req.user,
+            req:req
         })
     }
     catch {
@@ -58,6 +62,9 @@ router.get(`/:id` , isAuth ,   async (req , res) => {
 router.get(`/:id/edit`,  isAuth ,  async (req , res) => {
     try {
         const author = await Author.findById(req.params.id)
+        if (!author.user.equals(req.user.id)) {
+            return res.redirect('/')
+        }
         res.render(`authors/edit` , {author : author})
     } 
     catch {
@@ -69,6 +76,9 @@ router.put(`/:id` , isAuth ,  async (req , res) => {
     let author 
     try{
         author = await Author.findById(req.params.id)
+        if(!author.user.equals(req.user.id)){
+            res.redirect(`/`)
+        }
         author.name = req.body.name
         await author.save()
         res.redirect(`/authors/${author.id}`)
@@ -88,6 +98,9 @@ router.delete(`/:id` , isAuth ,  async (req , res) => {
     let author
     try {
         author = await Author.findById(req.params.id)
+        if(author.user.toString() !== req.user.id.toString()){
+            return res.send(`Unauthorized` , {error : `You are not the Owner of this Author`})
+        }
         await author.remove()
         res.redirect(`/authors`)
     } 

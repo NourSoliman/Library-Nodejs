@@ -13,11 +13,13 @@
         <div class="author-controls">
     
             <a href="/authors/<%= author.id %>" class="view">View</a>
-            <a href="/authors/<%= author.id %>/edit" class="edit">Edit</a>
-            <%-  include(`../partials/deleteForm` , {url : `/authors/${author.id}`})%>
+            <% if(author.user && author.user.equals(req.user.id)) { %>
+                <a href="/authors/<%= author.id %>/edit" class="edit">Edit</a>
+            <%-  include(`../partials/deleteForm` , {url : `/authors/${author.id}` , author:author , req : req })%>
+            <% } %>
         </div>
     </div>
     <% }) %>
-</form>
+
     
     
