@@ -1,38 +1,46 @@
 :root {
-    --main-font : 'Poppins', sans-serif;
+    --main-font: 'Poppins', sans-serif;
 }
+
 .header-links {
     font-family: var(--main-font);
 }
+
 .main-header {
     font-size: 50px;
     text-decoration: none;
     color: white !important;
 }
+
 .ul-links {
     display: flex;
 }
+
 ul li {
     list-style: none;
 
 }
+
 .header-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 5rem;
 }
-ul li  a {
+
+ul li a {
     padding: 20px;
     text-decoration: none;
     color: white;
 
 }
+
 ul li p {
     padding: 0px;
     color: white;
 }
-ul li  a:hover {
+
+ul li a:hover {
     color: goldenrod;
 }
 
@@ -42,16 +50,44 @@ ul li  a:hover {
     color: white;
     padding: 10px;
     margin-bottom: 10px;
-  }
-  
-  /* Style for create account link */
-  .create-account {
+}
+
+/* Style for create account link */
+.create-account {
     margin-top: 20px;
     text-align: center;
 
-  }
-  
-  .create-account a {
+}
+
+.create-account a {
     color: white;
     text-decoration: none;
-  }
+}
+
+
+.drop-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.dropMenu-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    padding: 5px;
+}
+
+.drop-menu:hover .dropMenu-content {
+    display: block;
+}
+
+.dropMenu-content a {
+    color: White;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}

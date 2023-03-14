@@ -7,6 +7,15 @@ const loginSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
+    },
+      role: {
+        type: String,
+        roles: ['user', 'admin' , `owner`],
+        default: 'user'
+      },
+      blocked: {
+        type: Boolean,
+        default:false
+      }
 })
 module.exports = new mongoose.model(`user` ,loginSchema )

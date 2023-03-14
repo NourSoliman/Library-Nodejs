@@ -9,9 +9,9 @@ const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require(`connect-mongo`)
 const User = require(`./models/user`)
-const flash = require('connect-flash');
+const flash = require('express-flash');
 //session
-app.use(flash())
+
 
 
 app.use(session({
@@ -28,7 +28,7 @@ app.use(session({
 require('./config/passport')
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash())
 app.get(`*` , (req , res , next) => {
     res.locals.user = req.user || null
     next()
@@ -40,7 +40,8 @@ const authorRouter = require(`./routers/authors`)
 const bookRouter = require(`./routers/books`)
 const SignRouter = require(`./routers/userSign`)
 const LogoutRouter = require(`./routers/logout`)
-
+const adminRouter = require(`./routers/admin`)
+const blockRouter = require(`./routers/block`)
 //mongoose
 const mongoose = require(`mongoose`)
 mongoose.set('strictQuery', true)
@@ -84,6 +85,8 @@ app.use(`/authors` , authorRouter)
 app.use(`/books` , bookRouter)
 app.use(`/Sign` , SignRouter )
 app.use(`/` , LogoutRouter)
+app.use(`/admin` , adminRouter)
+app.use(`/admin` , blockRouter)
 app.listen(8080)
 
 

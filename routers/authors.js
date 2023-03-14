@@ -16,7 +16,7 @@ router.get(`/`, isAuth ,  async(req , res) => {
     }
     try {
         const authors = await Author.find(Search)
-        res.render(`authors/index` , {authors : authors , Search:req.query , req:req})
+        res.render(`authors/index` , {authors : authors , Search:req.query , req:req , user :req.user})
     } catch {
         res.redirect(`/`);
     }
@@ -98,7 +98,7 @@ router.delete(`/:id` , isAuth ,  async (req , res) => {
     let author
     try {
         author = await Author.findById(req.params.id)
-        if(author.user.toString() !== req.user.id.toString()){
+        if(author.user.toString() !== req.user.id.toString() && req.user.role !== `admin`){
             return res.send(`Unauthorized` , {error : `You are not the Owner of this Author`})
         }
         await author.remove()

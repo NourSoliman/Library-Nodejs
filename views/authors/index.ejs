@@ -1,7 +1,7 @@
 
 <h3 class="search">Search</h3>
 <form action="/authors" method="get" class="author-container">
-    <label>
+    <label class="search-label">
         Name
     </label>
     <input type="text" name="name" value="<%= Search.name %>" class="search-input">
@@ -13,9 +13,9 @@
         <div class="author-controls">
     
             <a href="/authors/<%= author.id %>" class="view">View</a>
-            <% if(author.user && author.user.equals(req.user.id)) { %>
+            <% if(author.user && author.user.equals(req.user.id) || user.role === `admin`) { %>
                 <a href="/authors/<%= author.id %>/edit" class="edit">Edit</a>
-            <%-  include(`../partials/deleteForm` , {url : `/authors/${author.id}` , author:author , req : req })%>
+            <%-  include(`../partials/deleteForm` , {url : `/authors/${author.id}` , author:author , req : req , user:user })%>
             <% } %>
         </div>
     </div>
