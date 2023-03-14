@@ -5,7 +5,7 @@ const flash = require('express-flash');
 
 //Middleware function to check if User is admin or not
 const checkAdmin = (req  , res , next) => {
-    if(req.isAuthenticated() && req.user.role === `admin`) {
+    if(req.isAuthenticated() && req.user.role === `owner`) {
         return next()
     } else if(req.isAuthenticated()) {
         res.send(`Unauthorized`)
