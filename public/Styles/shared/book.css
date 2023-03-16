@@ -26,6 +26,7 @@
 }
 
 /*newBooks-form*/
+
 .form-row {
     display: flex;
     margin-bottom: 15px;
@@ -67,8 +68,12 @@
 .submit-book {
     padding: 5px;
 }
+
+
 /*Book*/
-.author-book , .publish-book , .page-book , .desc-book {
+
+
+ .author-book , .publish-book , .page-book , .desc-book , .uploaded {
     color: var(--white-color);
 }
 
@@ -85,6 +90,63 @@
     color: var(--hover-color);
 }
 
-.publish {
+.publish , .uploadedBy  {
     color: var(--gold-color);
+} 
+/*Edit page*/
+.cancel-edit {
+    text-decoration: none;
+    color: white;
+}   
+.edit-book {
+    color: var(--white-color);
 }
+
+@media only screen and (max-width: 768px) {
+    /* Adjust font size and spacing for book controls on small screens */
+    .book-controls a {
+      font-size: 20px;
+      margin-right: 3px;
+    }
+    .search {
+        text-align: center;
+    }
+    .book-cover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    /* Center book actions on small screens */
+    .book-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  }
+
+  /*Media query*/
+@media only screen and (max-width: 600px) {
+    .form-row {
+    flex-direction: column;
+    }
+    .form-item {
+    margin-left: 0;
+    }
+    .form-item input, .form-item select, .form-item textarea {
+    height: 40px;
+    font-size: 16px;
+    }
+    .books-controls {
+    display: flex;
+    flex-direction: column;
+    }
+    .cancel-book {
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    text-align: center;
+    }
+    .submit-book {
+    margin-top: 10px;
+    }
+    }

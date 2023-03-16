@@ -6,9 +6,9 @@ const passport = require('passport');
 // const authMiddleware = require(`../middleware`)
 // router.use(authMiddleware);
 const { isAuth } = require("../Helpers/authentication")
-
+    router.use(isAuth)
 //index router
-router.get(`/`, isAuth ,  async(req , res) => {
+router.get(`/`,   async(req , res) => {
     
     let Search = {}
     if(req.query.name !=null && req.query.name !== ``) {
@@ -22,7 +22,7 @@ router.get(`/`, isAuth ,  async(req , res) => {
     }
 })
 //new author page
-router.get(`/new`  , isAuth ,   (req , res) => {
+router.get(`/new`  ,    (req , res) => {
     
     res.render(`authors/new` , {author : new Author()})
 })
@@ -42,7 +42,7 @@ router.post(`/` ,  async(req , res) => {
     }
 })
 //show authors page
-router.get(`/:id` , isAuth ,   async (req , res) => {
+router.get(`/:id` ,    async (req , res) => {
     try {
         const author = await Author.findById(req.params.id)
         const books = await Books.find({author : author.id}).limit(6).exec()
@@ -59,7 +59,7 @@ router.get(`/:id` , isAuth ,   async (req , res) => {
     }
 })
 // edit authors 
-router.get(`/:id/edit`,  isAuth ,  async (req , res) => {
+router.get(`/:id/edit`,    async (req , res) => {
     try {
         const author = await Author.findById(req.params.id)
         if (!author.user.equals(req.user.id)) {
@@ -72,7 +72,7 @@ router.get(`/:id/edit`,  isAuth ,  async (req , res) => {
         res.redirect(`/authors`)
     }
 })
-router.put(`/:id` , isAuth ,  async (req , res) => {
+router.put(`/:id` ,   async (req , res) => {
     let author 
     try{
         author = await Author.findById(req.params.id)
@@ -94,7 +94,7 @@ router.put(`/:id` , isAuth ,  async (req , res) => {
     }
 })
 //delete authors
-router.delete(`/:id` , isAuth ,  async (req , res) => {
+router.delete(`/:id` ,   async (req , res) => {
     let author
     try {
         author = await Author.findById(req.params.id)

@@ -3,3 +3,16 @@
     <input type="email" name="email" required class="block-input"> 
     <button type="submit" class="block-button">Promote to admin</button>
   </form>
+  <% if (typeof error !== 'undefined' && error.length > 0) { %>
+    <div class="error-div">
+      <p>
+        <%= error %>
+      </p>
+    </div>
+    <% } else if( typeof successMessage !== `undefined` && successMessage.length > 0) { %>
+      <div class="success-div">
+        <p>
+          <%= successMessage %>
+        </p>
+      </div>
+    <% } %>

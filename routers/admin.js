@@ -5,17 +5,19 @@ const flash = require('express-flash');
 
 //Middleware function to check if User is admin or not
 const checkAdmin = (req  , res , next) => {
+
     if(req.isAuthenticated() && req.user.role === `owner`) {
         return next()
     } else if(req.isAuthenticated()) {
-        res.send(`Unauthorized`)
+        res.render(`admin/promote`)
     }
      else {
         res.redirect(`/Sign/login`)
     }
 }
 router.get('/promote', checkAdmin, (req, res) => {
-    res.render('admin/promote');
+    const {error , successMessage} = req.query;
+    res.render('admin/promote' , {error , successMessage});
   })
 //find the user that i wanna promote to admin
 router.post(`/promote` , checkAdmin , async (req , res) => {
@@ -25,15 +27,15 @@ router.post(`/promote` , checkAdmin , async (req , res) => {
     const User = await user.findOne({email})
 
     if(!User) {
-        req.flash(`error` , `user not found`);
-        return res.redirect(`/admin/promote`)
+
+        return res.redirect(`/admin/promote?error=User+Not+Found`)
         
     }
 
     // promote user to admin 
     User.role = `admin`
     await User.save()
-    req.flash('success', 'User promoted to admin');
-    return res.redirect('/admin/promote');
+
+    return res.redirect('/admin/promote?successMessage=User+promoted+to+admin');
 })
 module.exports = router

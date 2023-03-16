@@ -1,3 +1,9 @@
+const links = document.querySelector('.links');
+const ulLinks = document.querySelector('.ul-links');
+
+links.addEventListener('click', () => {
+ulLinks.classList.toggle('show');
+});
 FilePond.registerPlugin(
     FilePondPluginImagePreview,
     FilePondPluginImageResize,

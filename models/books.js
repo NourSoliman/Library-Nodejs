@@ -34,6 +34,11 @@ const bookSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         required: true,
         ref:`Author`
+    },
+    uploadedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref: 'user'
     }
 })
 bookSchema.virtual(`coverImagePath`).get(function() {

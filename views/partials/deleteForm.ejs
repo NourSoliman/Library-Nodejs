@@ -1,7 +1,6 @@
-<% if(req.user && author.user&& author.user.equals(req.user.id)|| user.role === 'admin') { %>
+<% if(locals.req.user && author.user&& author.user.equals(locals.req.user.id)|| locals.req.user.role === 'admin') { %>
 <form method="POST" action="<%= url %>?_method=DELETE">
-    <button type="submit"  class="delete-button">
-    <button type="submit" >
+    <button type="submit" class="delete-button">
         delete
     </button>
 </form>

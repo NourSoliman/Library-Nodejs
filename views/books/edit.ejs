@@ -1,8 +1,8 @@
-<h2>
+<h2 class="edit-book">
     Edit book
 </h2>
 <form  action="/books/<%= book.id %>?_method=PUT" method="post" >
 <%-  include(`_form.ejs`)%>
-<a href="/books"> Cancel</a>
+<a href="/books" class="cancel-edit"> Cancel</a>
 <button type="submit">Update</button>
 </form>

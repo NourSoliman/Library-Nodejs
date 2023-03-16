@@ -34,7 +34,8 @@
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
-.login , .signup {
+.login,
+.signup {
     display: block;
     width: 100%;
     padding: 10px;
@@ -48,28 +49,35 @@
     transition: all 0.3s ease;
 }
 
-.login:hover , .signup:hover {
+.login:hover,
+.signup:hover {
     background: #2ecc71;
 }
 
 .error-message {
-    /* background-color: #ff8080; */
     color: #ff8080;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
     padding: 10px;
     margin-bottom: 20px;
-    display: block ;
+    display: block;
 }
+
 /*block form*/
 
-.block-label , .author-label , .search-label {
+ .block-label,
+.author-label,
+.search-label {
     color: white;
     margin-bottom: 10px;
     font-weight: bold;
 }
-.block-input , .author-input , .search-input , .book-search {
+
+.block-input,
+.author-input,
+.search-input,
+.book-search {
     display: block;
     padding: 8px 12px;
     border-radius: 4px;
@@ -78,7 +86,10 @@
     font-size: 16px;
     width: 100%;
 }
-.block-button , .submit-author , .search-button {
+
+.block-button,
+.submit-author,
+.search-button {
     background-color: #4CAF50;
     color: #fff;
     padding: 8px 12px;
@@ -89,11 +100,45 @@
     margin-top: 5px;
 }
 
-input[type="date"] {
+
+
+.error-div>p {
+    color: red;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.success-div>p {
+    color: #2ecc71;
+    font-size: 20px;
+    font-family: sans-serif;
+}  
+
+@media (max-width: 768px) {
+    .login-form {
+        width: 90%;
+        margin: 50px auto;
+    }
+
+    .form-group label {
+        font-size: 18px;
+    }
+
+    .form-group input {
+        font-size: 16px;
+    }
+
+    .login,
+    .signup {
+        font-size: 18px;
+    }
+} 
+
+ input[type="date"] {
     padding: 0.5rem;
     border-radius: 0.25rem;
     border: 1px solid #ccc;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
-  }
+} 

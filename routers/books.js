@@ -3,8 +3,10 @@ const Author = require("../models/author")
 const path = require(`path`)
 const Book = require("../models/books")
 // const multer = require(`multer`)
+const user = require(`../models/user`)
+const router = express.Router()
 const { isAuth } = require("../Helpers/authentication")
-
+router.use(isAuth)
 const imagefiles = [`image/jpeg` , `image/png` , `image/gif`]
 // const upload = multer({
 //     dest: uploadPath, 
@@ -12,8 +14,7 @@ const imagefiles = [`image/jpeg` , `image/png` , `image/gif`]
 //         callback(null ,imagefiles.includes(file.mimetype) )
 //     }
 // })
-const router = express.Router()
-router.get(`/` , isAuth , async(req , res) => {
+router.get(`/` ,  async(req , res) => {
     let query = Book.find({})
     if(req.query.title != null && req.query.title != ``) {
         query = query.regex(`title` , new RegExp(req.query.title , (`i`)))
@@ -28,24 +29,26 @@ router.get(`/` , isAuth , async(req , res) => {
         const books = await query.exec()
         res.render(`books/index` , {
             books : books,
-            Search : req.query
+            Search : req.query,
+            user:req.user
         })
     } 
     catch {
         res.redirect(`/`)
     }
 })
-router.get(`/new` ,isAuth , async(req , res) => {
+router.get(`/new` , async(req , res) => {
     renderAnotherPage(res , new Book())
 })
 //Creating a new Book
-router.post(`/` , isAuth , async (req , res) => {
+router.post(`/` ,  async (req , res) => {
     
         const book = new Book({
         title: req.body.title,
         description : req.body.description,
         publishDate : new Date(req.body.publishdate),
         pageCount : req.body.pagecount,
+        uploadedBy: req.user._id,
         author : req.body.author,
     }) 
     saveCover(book , req.body.cover)
@@ -62,17 +65,18 @@ router.post(`/` , isAuth , async (req , res) => {
         renderFormPage(res, book , `new` , hasError)
 }
 //Edit Book
-router.get(`/:id/edit` , isAuth , async(req , res) => {
+router.get(`/:id/edit` ,  async(req , res) => {
     try {
         const book = await Book.findById(req.params.id)
         renderFormPage(res , book , `edit`)
     }
-    catch {
+    catch(error) {
+        console.log(error);
         res.redirect(`/`)
     }
 })
 //Update Book
-router.put(`/:id` , isAuth , async(req , res) => {
+router.put(`/:id` ,  async(req , res) => {
     let book
     try {
         book = await Book.findById(req.params.id)
@@ -87,7 +91,8 @@ router.put(`/:id` , isAuth , async(req , res) => {
         await book.save()
         res.redirect(`/books/${book.id}`)
     }
-    catch {
+    catch(error) {
+        console.log(error);
         if(book != null ) {
             renderAnotherPage(res ,book, true)
         } else {
@@ -104,42 +109,55 @@ router.put(`/:id` , isAuth , async(req , res) => {
         const authors = await Author.find({})
         const params = {
                 authors : authors,
-                book: book
+                book: book,
+                
+                
         }
         if(hasError) {
             if(form === `edit`) {
                 params.errorMessage = `failed Updating  book`
             } else {
+                
                 params.errorMessage = `failed Creating  book`
             }
         }
         res.render(`books/${form}` , params)
     } catch(error) {
+        console.log(error);
         res.redirect(`/books`);
     }
 }
 //Show books page
-    router.get(`/:id` , isAuth , async (req , res) => {
+    router.get(`/:id` ,  async (req , res) => {
         try {
-        const book = await Book.findById(req.params.id).populate(`author`).exec()
+        const book = await Book.findById(req.params.id).populate(`author`).exec();
+        // const User = await user.findById(req.params.id).populate(`user`).exec();
         res.render(`books/show` , {
-            book: book
+            book: book,
+            req:req,
+           
+
         })
         }
-        catch {
+        catch(error) {
+            console.log(error);
             res.redirect(`/`)
         }
     })
     function saveCover(book , coverEncoded) {
-        if(coverEncoded == null) return 
-        const cover = JSON.parse(coverEncoded)
-        if(cover != null && imagefiles.includes(cover.type)){
-            book.coverImageName = new Buffer.from(cover.data , `base64`)
-            book.coverImageType = cover.type
+        if(!coverEncoded) return;
+        try {
+            const cover = JSON.parse(coverEncoded)
+            if(cover != null && imagefiles.includes(cover.type)){
+                book.coverImageName = Buffer.from(cover.data , `base64`)
+                book.coverImageType = cover.type
+            }
+        } catch(error) {
+            console.log(error);
         }
     }
     //Delete Book page
-    router.delete(`/:id` , isAuth , async(req , res) => {
+    router.delete(`/:id` ,  async(req , res) => {
         let book 
         try {
             book = await Book.findById(req.params.id)
